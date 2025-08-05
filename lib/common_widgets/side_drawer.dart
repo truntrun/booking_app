@@ -29,88 +29,150 @@ class SideDrawer extends StatelessWidget {
         ],
       ),
       child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header with profile
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: [
-                  Container(
-                    width: 52,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white24,
-                      border: Border.all(color: Colors.white30, width: 2),
-                    ),
-                    child: const Center(
-                      child: Icon(Icons.person, color: Colors.white54, size: 32),
-                    ),
-                  ),
-                  const SizedBox(width: 14),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Alice Portman',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+        child: SingleChildScrollView(
+          child: IntrinsicHeight(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header with profile
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 52,
+                        height: 52,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white24,
+                          border: Border.all(color: Colors.white30, width: 2),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white54,
+                            size: 32,
+                          ),
                         ),
                       ),
-                      SizedBox(height: 2),
-                      Text(
-                        'Show Profile',
-                        style: TextStyle(
-                          color: Colors.white54,
-                          fontSize: 13,
-                        ),
+                      const SizedBox(width: 14),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Alice Portman',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(height: 2),
+                          Text(
+                            'Show Profile',
+                            style: TextStyle(
+                              color: Colors.white54,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Spacer(),
+                      IconButton(
+                        icon: Icon(Icons.close, color: Colors.white54),
+                        onPressed: onClose,
                       ),
                     ],
                   ),
-                  Spacer(),
-                  IconButton(
-                    icon: Icon(Icons.close, color: Colors.white54),
-                    onPressed: onClose,
-                  )
-                ],
-              ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    'Account Setting',
+                    style: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _drawerItem(
+                  Icons.notifications,
+                  'Notifications',
+                  trailing: _notificationBadge(12),
+                ),
+                const Divider(
+                  color: Colors.white12,
+                  thickness: 1,
+                  indent: 24,
+                  endIndent: 24,
+                ),
+                _drawerItem(Icons.credit_card, 'Payment'),
+                const Divider(
+                  color: Colors.white12,
+                  thickness: 1,
+                  indent: 24,
+                  endIndent: 24,
+                ),
+                _drawerItem(Icons.translate, 'Translate'),
+                const Divider(
+                  color: Colors.white12,
+                  thickness: 1,
+                  indent: 24,
+                  endIndent: 24,
+                ),
+                _drawerItem(Icons.privacy_tip, 'Privacy'),
+                const SizedBox(height: 18),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    'Hosting',
+                    style: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _drawerItem(Icons.list_alt, 'Listing'),
+                const Divider(
+                  color: Colors.white12,
+                  thickness: 1,
+                  indent: 24,
+                  endIndent: 24,
+                ),
+                _drawerItem(Icons.person, 'Host'),
+                const SizedBox(height: 18),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    'More',
+                    style: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _drawerItem(
+                  Icons.nightlight_round,
+                  'Dark Mode',
+                  trailing: _darkModeSwitch(),
+                ),
+                const Divider(
+                  color: Colors.white12,
+                  thickness: 1,
+                  indent: 24,
+                  endIndent: 24,
+                ),
+                _drawerItem(Icons.update, 'Update'),
+                const Spacer(),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text('Account Setting', style: TextStyle(color: Colors.white54, fontSize: 13, fontWeight: FontWeight.w600)),
-            ),
-            const SizedBox(height: 10),
-            _drawerItem(Icons.notifications, 'Notifications', trailing: _notificationBadge(12)),
-            const Divider(color: Colors.white12, thickness: 1, indent: 24, endIndent: 24),
-            _drawerItem(Icons.credit_card, 'Payment'),
-            const Divider(color: Colors.white12, thickness: 1, indent: 24, endIndent: 24),
-            _drawerItem(Icons.translate, 'Translate'),
-            const Divider(color: Colors.white12, thickness: 1, indent: 24, endIndent: 24),
-            _drawerItem(Icons.privacy_tip, 'Privacy'),
-            const SizedBox(height: 18),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text('Hosting', style: TextStyle(color: Colors.white54, fontSize: 13, fontWeight: FontWeight.w600)),
-            ),
-            const SizedBox(height: 10),
-            _drawerItem(Icons.list_alt, 'Listing'),
-            const Divider(color: Colors.white12, thickness: 1, indent: 24, endIndent: 24),
-            _drawerItem(Icons.person, 'Host'),
-            const SizedBox(height: 18),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text('More', style: TextStyle(color: Colors.white54, fontSize: 13, fontWeight: FontWeight.w600)),
-            ),
-            const SizedBox(height: 10),
-            _drawerItem(Icons.nightlight_round, 'Dark Mode', trailing: _darkModeSwitch()),
-            const Divider(color: Colors.white12, thickness: 1, indent: 24, endIndent: 24),
-            _drawerItem(Icons.update, 'Update'),
-            const Spacer(),
-          ],
+          ),
         ),
       ),
     );
@@ -129,7 +191,11 @@ class SideDrawer extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         trailing: trailing,
         onTap: () {},
@@ -147,7 +213,14 @@ class SideDrawer extends StatelessWidget {
         color: Colors.blueAccent,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text('$count', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
+      child: Text(
+        '$count',
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 13,
+        ),
+      ),
     );
   }
 

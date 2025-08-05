@@ -147,42 +147,46 @@ class PropertyDetailsPage extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(height: 18),
-                                  Container(
-                                    width: double.infinity,
-                                    height: 48,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(24),
-                                      border: Border.all(
-                                        color: const Color(0xFF3B72FE),
-                                        width: 1.6,
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: const Color(
-                                            0xFF3B72FE,
-                                          ).withOpacity(0.4),
-                                          blurRadius: 12,
-                                          spreadRadius: 0.5,
-                                          offset: const Offset(0, 3),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const BookingCalendarPage(),
                                         ),
-                                      ],
-                                    ),
-                                    child: Center(
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => const BookingCalendarPage(),
+                                      );
+                                    },
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 48,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(24),
+                                        border: Border.all(
+                                          color: const Color(0xFF3B72FE),
+                                          width: 1.6,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: const Color(
+                                              0xFF3B72FE,
+                                            ).withOpacity(0.4),
+                                            blurRadius: 12,
+                                            spreadRadius: 0.5,
+                                            offset: const Offset(0, 3),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Center(
+                                        child: GestureDetector(
+                                          onTap: () {},
+                                          child: Text(
+                                            'Book Now',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 17,
                                             ),
-                                          );
-                                        },
-                                        child: Text(
-                                          'Book Now',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 17,
                                           ),
                                         ),
                                       ),
