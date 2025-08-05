@@ -61,11 +61,13 @@ class _TravelBookingScreenState extends State<TravelBookingScreen> {
             child: Column(
               children: [
                 // Top Search Bar
-                CustomTopNav(onMenuTap: () {
-                  setState(() {
-                    _drawerOpen = true;
-                  });
-                }),
+                CustomTopNav(
+                  onMenuTap: () {
+                    setState(() {
+                      _drawerOpen = true;
+                    });
+                  },
+                ),
                 const SizedBox(height: 20),
                 // Horizontal Tab Bar
                 CategorySelector(),
@@ -99,9 +101,7 @@ class _TravelBookingScreenState extends State<TravelBookingScreen> {
                     _drawerOpen = false;
                   });
                 },
-                child: Container(
-                  color: Colors.black.withOpacity(0.35),
-                ),
+                child: Container(color: Colors.black.withOpacity(0.35)),
               ),
             ),
         ],
