@@ -4,6 +4,7 @@ import 'package:teq_mavens_assignment/common_widgets/categories_selector.dart';
 import 'package:teq_mavens_assignment/common_widgets/custom_tab_bar.dart';
 import 'package:teq_mavens_assignment/common_widgets/homepage_card.dart';
 import 'package:teq_mavens_assignment/common_widgets/top_nav_bar.dart';
+import 'package:teq_mavens_assignment/common_widgets/side_drawer.dart';
 import 'property_details_page.dart';
 
 void main() {
@@ -47,23 +48,63 @@ class _TravelBookingScreenState extends State<TravelBookingScreen> {
     Icons.nature,
   ];
 
+  bool _drawerOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF1A1B2E),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Top Search Bar
-            CustomTopNav(),
-            const SizedBox(height: 20),
-            // Horizontal Tab Bar
-            CategorySelector(),
-            const SizedBox(height: 20),
-            // Travel Cards List
-            Expanded(child: _buildTravelCardsList()),
-          ],
-        ),
+      body: Stack(
+        children: [
+          // Main Content
+          SafeArea(
+            child: Column(
+              children: [
+                // Top Search Bar
+                CustomTopNav(onMenuTap: () {
+                  setState(() {
+                    _drawerOpen = true;
+                  });
+                }),
+                const SizedBox(height: 20),
+                // Horizontal Tab Bar
+                CategorySelector(),
+                const SizedBox(height: 20),
+                // Travel Cards List
+                Expanded(child: _buildTravelCardsList()),
+              ],
+            ),
+          ),
+          // Animated Side Drawer
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.easeOut,
+            top: 0,
+            bottom: 0,
+            left: _drawerOpen ? 0 : -MediaQuery.of(context).size.width * 0.8,
+            child: SideDrawer(
+              onClose: () {
+                setState(() {
+                  _drawerOpen = false;
+                });
+              },
+            ),
+          ),
+          // Drawer overlay (tap to close)
+          if (_drawerOpen)
+            Positioned.fill(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _drawerOpen = false;
+                  });
+                },
+                child: Container(
+                  color: Colors.black.withOpacity(0.35),
+                ),
+              ),
+            ),
+        ],
       ),
       bottomNavigationBar: CustomBottomTabBar(
         selectedIndex: _selectedBottomIndex,

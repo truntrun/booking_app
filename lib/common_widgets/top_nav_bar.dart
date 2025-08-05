@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomTopNav extends StatelessWidget {
-  const CustomTopNav({super.key});
+  final VoidCallback? onMenuTap;
+  const CustomTopNav({Key? key, this.onMenuTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,26 +14,29 @@ class CustomTopNav extends StatelessWidget {
             // Floating rotated container with straight hamburger icon (left)
             Align(
               alignment: Alignment.centerLeft,
-              child: Transform.rotate(
-                angle: 0.9, // Rotate the container
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF2F3455),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Transform.rotate(
-                    angle: -0.9, // Counter-rotate the icon to keep it straight
-                    child: Icon(Icons.menu, color: Colors.white, size: 20),
+              child: GestureDetector(
+                onTap: onMenuTap,
+                child: Transform.rotate(
+                  angle: 0.9, // Rotate the container
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF2F3455),
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 8,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Transform.rotate(
+                      angle: -0.9, // Counter-rotate the icon to keep it straight
+                      child: Icon(Icons.menu, color: Colors.white, size: 20),
+                    ),
                   ),
                 ),
               ),
